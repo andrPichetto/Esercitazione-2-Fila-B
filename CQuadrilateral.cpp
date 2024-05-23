@@ -14,16 +14,12 @@ Quadrilateral::Quadrilateral() {
 Quadrilateral::Quadrilateral(Format sf) {
 
 	Init();
-	if (sf.fill == NULL || sf.outline == NULL) {
-		WarningMessage("constructor: Color ptr was NULL");
-		Init();
-	}
-	else
-	{
-		shapef->fill = sf.fill;
-		shapef->outline = sf.outline;
-		cout << "Quadrilateral and color - constructor " << endl;
-	}
+
+	shapef->fill = sf.fill;
+	shapef->outline = sf.outline;
+
+	cout << "Quadrilateral and color - constructor " << endl;
+
 
 } 
 
@@ -42,7 +38,10 @@ Quadrilateral::~Quadrilateral() {
 
 	cout << "Quadrilateral - destructor" << endl;
 	Reset();
-	delete shapef;
+
+	if (shapef != NULL) {
+		delete shapef;
+	}
 
 }  
 
@@ -84,10 +83,12 @@ bool Quadrilateral::operator==(const Quadrilateral &o) {
 }
 
 
-/// @brief default initialization of the object and color (black)
+/// @brief default initialization and color, allocation of Format shapef
 void Quadrilateral::Init() {
 	
-	shapef = new (Format);
+	shapef = NULL;
+	shapef = new(Format);
+
 	SetSides(0.,0.,0.,0.);
 	shapef->fill = k;
 	shapef->outline = k;
@@ -104,7 +105,8 @@ void Quadrilateral::Init(const Quadrilateral &o) {
 	sides[1] = o.sides[1]; 
 	sides[2] = o.sides[2]; 
 	sides[3] = o.sides[3];
-	shapef = o.shapef;
+	shapef->fill = o.shapef->fill;
+	shapef->outline = o.shapef->outline;
 	
 }
 

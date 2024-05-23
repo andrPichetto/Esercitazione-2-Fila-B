@@ -8,7 +8,7 @@
 #include "CRectangle.h"
 
 /// @brief default constructor 
-Rectangle::Rectangle() {
+Rectangle::Rectangle():Quadrilateral() {
 
 	cout << "Rectangle - constructor - default" << endl;
 
@@ -19,7 +19,7 @@ Rectangle::Rectangle() {
 /// @brief constructor 
 /// @param w width of the rectangle
 /// @param h height of the rectangle
-Rectangle::Rectangle(float w, float h) {
+Rectangle::Rectangle(float w, float h):Quadrilateral() {
 
 	Init();
 
@@ -58,6 +58,7 @@ Rectangle::~Rectangle() {
 
 	cout << "Rectangle - destructor" << endl;
 	Reset();
+
 }
 
 /// @brief copy constructor 
@@ -107,7 +108,8 @@ void Rectangle::Init(const Rectangle &r) {
 		
 	Init();
 	SetDim(r.width,r.height);
-	shapef = r.shapef;
+	shapef->fill = r.shapef->fill;
+	shapef->outline = r.shapef->outline;
 }
 
 /// @brief total reset of the object  

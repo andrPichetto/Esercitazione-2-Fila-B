@@ -9,7 +9,7 @@
 #include "CRhombus.h"
 
 /// @brief default constructor 
-Rhombus::Rhombus() {
+Rhombus::Rhombus():Quadrilateral() {
 
 	cout << "Rhombus - constructor - default" << endl;
 
@@ -20,7 +20,7 @@ Rhombus::Rhombus() {
 /// @brief constructor 
 /// @param dL diagonal (longer)
 /// @param dS diagonal (shorter)
-Rhombus::Rhombus(float dL, float dS) {
+Rhombus::Rhombus(float dL, float dS):Quadrilateral() {
 
 	Init();
 
@@ -109,7 +109,8 @@ void Rhombus::Init(const Rhombus &r) {
 	
 	Init();
 	SetDim(r.diagL,r.diagS);
-	shapef = r.shapef;
+	shapef->fill = r.shapef->fill;
+	shapef->outline = r.shapef->fill;
 	
 }
 
